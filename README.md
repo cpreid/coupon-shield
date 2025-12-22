@@ -19,20 +19,6 @@ Open source lib for Merchants to detect if an end user has Honey browser extensi
 </script>
 ```
 
-## Options
-
-```js
-window.fckHoney.listen(
-  (el) => {
-    console.log("Detected:", el);
-  },
-  {
-    uuidGate: true,
-    zNearMax: 2147480000
-  }
-);
-```
-
 ## Local Dev
 
 ```sh
