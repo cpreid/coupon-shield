@@ -70,10 +70,7 @@ function startHoneyOverlayObserver(options: ObserverOptions = {}): ObserverHandl
   const uuidGate = options.uuidGate ?? true;
   const onMatch =
     options.onMatch ??
-    ((el) => {
-      // Default: warn only, leaving response up to caller.
-      console.warn("[honey-detect] matched near-max z-index div:", el);
-    });
+    (() => {});
 
   const mo = new MutationObserver((mutations) => {
     for (const m of mutations) {
