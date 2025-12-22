@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>fck-honey test page</title>
+    <style>
+      body {
+        font-family: Georgia, "Times New Roman", serif;
+        padding: 24px;
+      }
+      button {
+        margin-right: 8px;
+        padding: 8px 12px;
+        font-size: 16px;
+      }
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(255, 0, 0, 0.15);
+        z-index: 2147483640;
+        display: block;
+      }
+      .overlay > div {
+        margin: 40px;
+        padding: 16px;
+        background: #fff;
+        border: 2px solid #c00;
+        width: 320px;
+        position: relative;
+      }
+      #overlay-close {
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        border: 0;
+        background: transparent;
+        font-size: 20px;
+        line-height: 1;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>fck-honey demo</h1>
+    <p>Build first: <code>npm run build</code>. Then open this file in a browser.</p>
+    <button id="spawn">Spawn overlay</button>
+    <pre id="log"></pre>
+
+    <script src="../dist/honey-detect.js"></script>
+    <script>
+      const logEl = document.getElementById("log");
+      const btnSpawn = document.getElementById("spawn");
+
+      function log(msg) {
+        logEl.textContent += msg + "\n";
+      }
+
+      const handle = window.fckHoney.listen((el) => {
+        log("Matched overlay: #" + el.id + " z-index " + getComputedStyle(el).zIndex);
+      });
+
+      function makeOverlay() {
+        const id = crypto.randomUUID ? crypto.randomUUID() : "00000000-0000-0000-0000-000000000000";
+        const overlay = document.createElement("div");
+        overlay.className = "overlay";
+        overlay.id = id;
+        overlay.innerHTML =
+          '<div><button aria-label="Close overlay" id="overlay-close">×</button>Test overlay ' + id + "</div>";
+        document.body.appendChild(overlay);
+        const closeBtn = document.getElementById("overlay-close");
+        if (closeBtn) {
+          closeBtn.addEventListener("click", () => {
+            overlay.remove();
+          });
+        }
+        return overlay;
+      }
+
+      let current;
+      btnSpawn.addEventListener("click", () => {
+        if (current) current.remove();
+        current = makeOverlay();
+      });
+    </script>
+  </body>
+</html>
