@@ -1,5 +1,5 @@
 export type WarnCallback = (message: string) => () => void;
-export type MatchCallback = (el: HTMLDivElement, warn: WarnCallback) => void;
+export type MatchCallback = (warn: WarnCallback, el?: HTMLDivElement) => void;
 
 export interface ObserverOptions {
   onMatch?: MatchCallback;
@@ -110,7 +110,11 @@ function scanElement(
     if (seen.indexOf(el) === -1 && looksLikeTargetDiv(el, zNearMax, uuidGate, debug)) {
       seen.push(el);
       if (removeHoney && el.parentNode) el.parentNode.removeChild(el);
-      onMatch(el, warn);
+      if (removeHoney) {
+        onMatch(warn);
+      } else {
+        onMatch(warn, el);
+      }
     }
   }
 
@@ -121,7 +125,11 @@ function scanElement(
     if (seen.indexOf(d) === -1 && looksLikeTargetDiv(d, zNearMax, uuidGate, debug)) {
       seen.push(d);
       if (removeHoney && d.parentNode) d.parentNode.removeChild(d);
-      onMatch(d, warn);
+      if (removeHoney) {
+        onMatch(warn);
+      } else {
+        onMatch(warn, d);
+      }
     }
   }
 }

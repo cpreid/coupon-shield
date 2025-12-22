@@ -9,7 +9,7 @@ Open source lib for Merchants to detect if an end user has Honey browser extensi
 ```html
 <script src="https://cdn.jsdelivr.net/npm/fck-honey/dist/honey-detect.min.js"></script>
 <script>
-  window.fckHoney.listen((el, warn) => {
+window.fckHoney.listen((warn) => {
     // Decide how you want to handle this. Native warn function allows you to tell the user to disable Honey.
     warn("You must disable the Honey extension to continue.");
   });
@@ -25,7 +25,7 @@ npm install fck-honey
 ```js
 import { listen } from "fck-honey";
 
-listen((el, warn) => {
+listen((warn) => {
   // Decide how you want to handle this. Native warn function allows you to tell the user to disable Honey.
   warn("You must disable the Honey extension to continue.");
 });
@@ -34,7 +34,8 @@ listen((el, warn) => {
 ## Advanced Options
 
 ```js
-window.fckHoney.listen((el, warn) => {
-  // will keep the Honey tool on the page, giving you access to its element via `el`
+window.fckHoney.listen((warn, el) => {
+  // removeHoney defaults to true (element is auto-removed).
+  // Set removeHoney to false if you want to keep the Honey element for some reason.
 }, { removeHoney: false });
 ```
