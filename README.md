@@ -19,6 +19,10 @@ Open source lib for Merchants to detect if an end user has Honey browser extensi
 
 ## Usage (ESM)
 
+```sh
+npm install fck-honey
+```
+
 ```js
 import { listen } from "fck-honey";
 
@@ -28,11 +32,3 @@ listen((el) => {
   console.log("Honey overlay detected:", el);
 });
 ```
-
-## Local Dev
-
-```sh
-npm run build
-```
-
-Open `example/index.html` in your browser.
