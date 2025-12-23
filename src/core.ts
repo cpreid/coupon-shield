@@ -1,3 +1,6 @@
+import { VERSION } from "./version";
+
+export const version = VERSION;
 export type WarnCallback = (message: string) => () => void;
 export type MatchCallback = (warn: WarnCallback, el?: HTMLDivElement) => void;
 
