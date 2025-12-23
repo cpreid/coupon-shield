@@ -81,6 +81,28 @@ function looksLikeTargetDiv(
     return false;
   }
 
+  // Fast path: if inline z-index is missing or below threshold, skip expensive getComputedStyle
+  const inlineZ = parseInt(el.style.zIndex, 10);
+  if (!isFinite(inlineZ) || inlineZ < zNearMax) {
+    const cs = getComputedStyle(el);
+    const z = parseZIndex(cs, el);
+    if (z === null || z < zNearMax) {
+      if (debug) console.log("+++ reject: z-index", z, cs.zIndex, el.style.zIndex, el);
+      return false;
+    }
+    if (cs.display === "none") {
+      if (debug) console.log("+++ reject: display none", el);
+      return false;
+    }
+    if (el.shadowRoot) {
+      if (debug) console.log("+++ reject: shadowRoot", el);
+      return false;
+    }
+
+    if (debug) console.log("+++ match", el);
+    return true;
+  }
+
   const cs = getComputedStyle(el);
   const z = parseZIndex(cs, el);
   if (z === null || z < zNearMax) {
