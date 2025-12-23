@@ -6,7 +6,7 @@ Open source lib for Merchants to detect if a customer has Honey browser extensio
 ## Usage (Browser Global)
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/fck-honey@0/dist/honey-detect.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fck-honey@latest/dist/honey-detect.min.js"></script>
 <script>
 window.fckHoney.listen((warn) => {
     // Decide how you want to handle this. Native warn function allows you to tell the user to disable Honey.
