@@ -3,14 +3,14 @@ import { VERSION } from "./version";
 export const version = VERSION;
 export type WarnCallback = (message: string) => () => void;
 export type DetectedVendor = "honey" | "Capital One Shopping" | "Rakuten";
-export type MatchCallback = (warn: WarnCallback, el?: HTMLDivElement, vendor?: DetectedVendor) => void;
+export type MatchCallback = (warn: WarnCallback, vendor?: DetectedVendor, el?: HTMLDivElement) => void;
 
 export interface ObserverOptions {
   onMatch?: MatchCallback;
   uuidGate?: boolean;
   zNearMax?: number;
   debug?: boolean;
-  removeHoney?: boolean;
+  removePageElement?: boolean;
   unbindAfterSeconds?: number;
 }
 
@@ -222,7 +222,7 @@ export function startHoneyOverlayObserver(options: ObserverOptions = {}): Observ
   const zNearMax = options.zNearMax ?? DEFAULT_Z_NEAR_MAX;
   const uuidGate = options.uuidGate ?? true;
   const debug = options.debug ?? false;
-  const removeHoney = options.removeHoney ?? true;
+  const removePageElement = options.removePageElement ?? true;
   const unbindAfterSeconds = options.unbindAfterSeconds;
   const warn: WarnCallback = (message) => showOverlay(message);
   const onMatch =
@@ -237,11 +237,11 @@ export function startHoneyOverlayObserver(options: ObserverOptions = {}): Observ
       clearTimeout(unbindTimer);
       unbindTimer = undefined;
     }
-    if (removeHoney && el.parentNode) el.parentNode.removeChild(el);
-    if (removeHoney) {
-      onMatch(warn, undefined, vendor);
+    if (removePageElement && el.parentNode) el.parentNode.removeChild(el);
+    if (removePageElement) {
+      onMatch(warn, vendor, undefined);
     } else {
-      onMatch(warn, el, vendor);
+      onMatch(warn, vendor, el);
     }
   };
 

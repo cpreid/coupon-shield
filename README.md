@@ -16,7 +16,7 @@ This will automatically detect a coupon extension and show a default warning to 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/coupon-shield@latest/dist/couponshield.min.js"></script>
 <script>
-window.couponShield.listen((warn, el, vendor) => {
+window.couponShield.listen((warn, vendor) => {
     // Decide how you want to handle this. Native warn function allows you to tell the user to disable the extension.
     // vendor is "honey", "Capital One Shopping", or "Rakuten"
     warn("You must disable the Honey extension to continue.");
@@ -33,7 +33,7 @@ npm install coupon-shield
 ```js
 import { listen } from "coupon-shield";
 
-listen((warn, el, vendor) => {
+listen((warn, vendor) => {
   // Decide how you want to handle this. Native warn function allows you to tell the user to disable the extension.
   // vendor is "honey", "Capital One Shopping", or "Rakuten"
   warn("You must disable the Honey extension to continue.");
@@ -43,15 +43,16 @@ listen((warn, el, vendor) => {
 ## Advanced Options
 
 ```js
-window.couponShield.listen((warn, el, vendor) => {
-  // removeHoney defaults to true (extension element loaded onto the page is auto-removed).
-  // Set removeHoney to false if you want to keep the extension element for some reason.
+window.couponShield.listen((warn, vendor, el) => {
+  // removePageElement defaults to true (extension element loaded onto the page is auto-removed).
+  // Set removePageElement to false if you want to keep the extension element for some reason.
+  // el is only defined when removePageElement is false.
   // vendor is "honey", "Capital One Shopping", or "Rakuten"
-}, { removeHoney: false });
+}, { removePageElement: false });
 ```
 
 ```js
-window.couponShield.listen((warn) => {
+window.couponShield.listen((warn, vendor) => {
   // Stop observing if nothing is detected within 10 seconds.
 }, { unbindAfterSeconds: 10 });
 ```

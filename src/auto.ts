@@ -27,7 +27,7 @@ if (typeof window !== "undefined") {
   window.couponShield.listen = listen;
   window.couponShield.version = version;
 
-  window.couponShieldHandle = window.couponShield.listen((warn, _el, vendor) => {
+  window.couponShieldHandle = window.couponShield.listen((warn, vendor) => {
     const vendorName = vendor || "honey";
     const vendorLabel = vendorName.charAt(0).toUpperCase() + vendorName.slice(1);
     warn(buildAutoModalHtml(vendorLabel));

@@ -33,14 +33,14 @@
         if (logEl) logEl.textContent += msg + "\n";
       }
 
-      window.couponShieldHandle = window.couponShield.listen((warn, el, vendor) => {
-          log("Matched overlay: #" + el.id + " z-index " + getComputedStyle(el).zIndex);
+      window.couponShieldHandle = window.couponShield.listen((warn, vendor, el) => {
+          if (el) log("Matched overlay: #" + el.id + " z-index " + getComputedStyle(el).zIndex);
           warn(buildAutoModalHtml(vendor || "honey"));
           detectionCount += 1;
           const debugEl = document.getElementById("debug");
           if (debugEl) debugEl.textContent = "Detections: " + detectionCount;          
         },
-        { debug: true, removeHoney: false }
+        { debug: true, removePageElement: false }
       );
     </script>
     <style>

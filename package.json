@@ -1,6 +1,6 @@
 {
   "name": "coupon-shield",
-  "version": "0.3.11",
+  "version": "0.3.12",
   "description": "Detects Honey browser extension overlays for merchants.",
   "license": "MIT",
   "main": "dist/couponshield.js",
