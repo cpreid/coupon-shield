@@ -1,7 +1,11 @@
 # Coupon Shield 🛡️
-Tool for eComm merchants to detect, warn and prevent a customer from shopping using a shady coupon browser extension (Honey, Capital One Shopping, Rakuten). 
-<br /><br />[View the  Demo video here 🎥](https://youtu.be/Em9Fjil8Xds).
-<br />[Inspired by MegaLag's "Exposing the Honey Influencer Scam" 🎥](https://www.youtube.com/watch?v=wwB3FmbcC88)
+ Tool for eComm merchants to detect, warn and prevent a customer from shopping using a shady coupon browser extension
+
+* Detects Honey, Capital One Shopping & Rakuten 🕵🏼‍♀️
+* Tiny! 3kb minified & gzipped 🐁
+* Does not collect any user data 🥦
+* [Demo video here 🎥](https://youtu.be/Em9Fjil8Xds)
+* [Inspired by MegaLag's YouTube 🎥](https://www.youtube.com/watch?v=wwB3FmbcC88)
 
 <img width="880" height="618" alt="image" src="https://github.com/user-attachments/assets/aa777c9b-d8f7-4051-a85b-57fd749f9858" />
 
