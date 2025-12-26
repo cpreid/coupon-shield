@@ -1,7 +1,7 @@
 # Coupon Shield 🛡️
- Tool for eComm merchants to detect, warn and prevent a customer from shopping using a shady coupon browser extension
+ Tool for eComm merchants to detect, warn and prevent a customer from shopping using a shady coupon browser extension.
 
-* Detects Honey, Capital One Shopping & Rakuten 🕵🏼‍♀️
+* Detects Honey, Klarna, Capital One Shopping & Rakuten 🕵🏼‍♀️
 * Tiny! 3kb minified & gzipped 🐁
 * Does not collect any user data 🥦
 * [Demo video here 🎥](https://youtu.be/Em9Fjil8Xds)
